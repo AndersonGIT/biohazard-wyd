@@ -13,7 +13,6 @@
 
   <!-- AOS (scroll animations) -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <link rel="icon" type="image/png" href="assets/logo-bio.png">
 
   <style>
     :root {
@@ -717,30 +716,6 @@
 
 /*RANKING GUILD FIM*/
 
-/*FUMAÇA RADIOATIVA NO FUNDO DO SITE - INICIO*/
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-
-  background: radial-gradient(circle at 50% 50%, rgba(255,255,0,0.15), transparent 70%);
-  filter: blur(60px);
-  animation: smokeMove 12s infinite alternate ease-in-out;
-}
-
-@keyframes smokeMove {
-  0% { transform: translate(-20px, -20px) scale(1.1); }
-  50% { transform: translate(20px, 10px) scale(1.2); }
-  100% { transform: translate(-10px, 20px) scale(1.15); }
-}
-
-
-/*FUMCAÇA RADIOTIVA NO FUNDO DO SITE - FIM*/
   </style>
 </head>
 
