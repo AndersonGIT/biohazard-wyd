@@ -1,0 +1,37 @@
+[
+  {
+    "nick": "Rachid",
+    "role": "Líder",
+    "class": "Foema",
+    "level": 429,
+    "power": 250000
+  },
+  {
+    "nick": "TAQUEPARILL",
+    "role": "Vice-Líder",
+    "class": "Foema",
+    "level": 429,
+    "power": 220000
+  },
+  {
+    "nick": "Keffra",
+    "role": "Vice-Líder",
+    "class": "BeastMaster",
+    "level": 425,
+    "power": 210000
+  },
+  {
+    "nick": "Goundelion",
+    "role": "Vice-Líder",
+    "class": "BeastMaster",
+    "level": 420,
+    "power": 205000
+  },
+  {
+    "nick": "ZeBonitinho",
+    "role": "Vice-Líder",
+    "class": "BeastMaster",
+    "level": 420,
+    "power": 150000
+  }
+]

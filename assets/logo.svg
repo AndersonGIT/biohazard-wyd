@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <!-- Círculo externo amarelo -->
+  <circle cx="150" cy="150" r="145" fill="#f5d300" stroke="#000" stroke-width="10"/>
+
+  <!-- Círculo central preto -->
+  <circle cx="150" cy="150" r="35" fill="#000"/>
+
+  <!-- Blade superior -->
+  <path d="M150 150 
+           L150 60 
+           A90 90 0 0 1 225 115 
+           L185 135 
+           A45 45 0 0 0 150 150 Z"
+        fill="#000"/>
+
+  <!-- Blade inferior direita -->
+  <path d="M150 150 
+           L225 185 
+           A90 90 0 0 1 150 255 
+           L150 210 
+           A45 45 0 0 0 150 150 Z"
+        fill="#000"/>
+
+  <!-- Blade inferior esquerda -->
+  <path d="M150 150 
+           L75 185 
+           A90 90 0 0 1 150 255 
+           L150 210 
+           A45 45 0 0 0 150 150 Z"
+        fill="#000"/>
+</svg>

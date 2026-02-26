@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BioHazard WYD - Guild Portal</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- AOS (scroll animations) -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #050509;
+      --bg-card: #141418;
+      --accent: #f5d300;        /* Amarelo Biohazard */
+      --accent-soft: #b38f00;   /* Amarelo queimado */
+      --text-main: #e6e6e6;
+      --text-muted: #a0a0a0;
+    }
+
+    /* Tema WYD Clássico */
+    body.theme-classic {
+      --bg-main: #0b0b0d;
+      --bg-card: #151515;
+      --accent: #f5d300;
+      --accent-soft: #b38f00;
+      --text-main: #f5f5dc;
+      --text-muted: #c0b080;
+      background-image: url('https://images.unsplash.com/photo-1526401485004-2fa806b5e2c9?auto=format&fit=crop&w=1400&q=80');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+    }
+
+    body {
+      background: var(--bg-main) !important;
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      scroll-behavior: smooth;
+      padding-top: 65px; /* ajuste conforme a altura da sua navbar */
+    }
+
+    .overlay-bg { background: radial-gradient(circle at top, rgba(245,211,0,0.12), transparent 60%); }
+
+.navbar {
+  background: rgba(0, 0, 0, 0.4); /* semitransparente */
+  backdrop-filter: blur(6px);     /* efeito vidro */
+}
+
+    .navbar-brand {
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent) !important;
+    }
+
+    .nav-link.active {
+      color: var(--accent) !important;
+    }
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1605902711622-cfb43c44367e?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      filter: grayscale(40%);
+      transform: scale(1.1);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(0,0,0,0.1), rgba(0,0,0,0.9));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 { 
+      animation: hazardPulse 2.5s infinite ease-in-out;
+      font-family: 'Orbitron', sans-serif; 
+      font-size: 4rem;
+      text-transform: uppercase; 
+      letter-spacing: 6px; 
+      text-shadow: 0 0 20px rgba(245,211,0,0.65); 
+      text-shadow: 0 0 10px #f5d300, 0 0 20px #f5d300, 0 0 35px #f5d300;
+    }
+@keyframes hazardPulse { 0% { text-shadow: 0 0 10px #f5d300; } 50% { text-shadow: 0 0 30px #f5d300; } 100% { text-shadow: 0 0 10px #f5d300; } }
+    .hero-sub {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+    }
+
+    .btn-accent {
+      background: var(--accent-soft);
+      color: #000;
+      border: none;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    }
+
+    .btn-accent:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      text-align: center;
+      font-size: 2.2rem;
+      letter-spacing: 3px;
+    }
+
+    .card-bio {
+      background: var(--bg-card);
+      border: 1px solid #222;
+      border-radius: 14px;
+      transition: 0.3s;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    .card-bio:hover {
+      transform: translateY(-6px) scale(1.01);
+      border-color: var(--accent-soft);
+      box-shadow: 0 0 30px rgba(0,0,0,0.7);
+    }
+
+    .badge-role {
+      background: var(--accent-soft);
+      
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .ranking-table thead {
+      background: rgba(0,0,0,0.6);
+    }
+
+    .ranking-table tbody tr:hover {
+      background: rgba(57,255,20,0.05);
+    }
+
+    footer {
+      background: #000;
+      padding: 20px;
+      text-align: center;
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+
+    /* Admin */
+    #admin-panel {
+      display: none;
+    }
+
+    #admin-panel.active {
+      display: block;
+    }
+
+    .form-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    #logo-biohazard {
+      filter: drop-shadow(0 0 12px #f5d300);
+    }
+
+    .logo-pulse { animation: pulseGlow 2.5s infinite ease-in-out; }
+
+    /*Animacao Videos INICIO*/
+    @keyframes pulseGlow { 0% { filter: drop-shadow(0 0 4px var(--accent)); } 50% { filter: drop-shadow(0 0 35px var(--accent)); } 100% { filter: drop-shadow(0 0 4px var(--accent)); } }
+  
+    .video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(245,211,0,0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Efeito radioativo no hover */
+.video-wrapper:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 15px rgba(245,211,0,0.5),
+    0 0 30px rgba(245,211,0,0.4),
+    0 0 45px rgba(245,211,0,0.3);
+}
+
+/* Animação de pulso radioativo */
+.video-wrapper:hover {
+  animation: hazardPulse 1.8s infinite ease-in-out;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*ANIMACAO VIDEOS FIM*/
+
+/*Animacao DISCORD INICIO*/
+.discord-wrapper {
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(245,211,0,0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Efeito radioativo no hover */
+.discord-wrapper:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 0 15px rgba(245,211,0,0.5),
+    0 0 30px rgba(245,211,0,0.4),
+    0 0 45px rgba(245,211,0,0.3);
+  animation: hazardPulse 1.8s infinite ease-in-out;
+}
+
+/*ANIMACAO DISCORD FIM*/
+
+/*GALERIA INICIO*/
+/* Container da imagem */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 12px rgba(245,211,0,0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Imagem base */
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+/* Efeito de zoom leve */
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+/* Glow radioativo + glitch */
+.gallery-item:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 15px rgba(245,211,0,0.5),
+    0 0 30px rgba(245,211,0,0.4),
+    0 0 45px rgba(245,211,0,0.3);
+  animation: hazardPulse 1.8s infinite ease-in-out;
+}
+
+/* Camadas glitch */
+.gallery-item::before,
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: screen;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+/* Camada verde tóxica */
+.gallery-item::before {
+  background: rgba(0, 255, 0, 0.15);
+  transform: translate(0, 0);
+}
+
+/* Camada amarela radioativa */
+.gallery-item::after {
+  background: rgba(255, 255, 0, 0.15);
+  transform: translate(0, 0);
+}
+
+/* Ativa o glitch no hover */
+.gallery-item:hover::before {
+  opacity: 1;
+  animation: glitchBefore 0.35s infinite;
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
+  animation: glitchAfter 0.35s infinite;
+}
+
+/* Animação do glitch */
+@keyframes glitchBefore {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(-3px, -2px); }
+  40%  { transform: translate(3px, 2px); }
+  60%  { transform: translate(-2px, 3px); }
+  80%  { transform: translate(2px, -3px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes glitchAfter {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(3px, 2px); }
+  40%  { transform: translate(-3px, -2px); }
+  60%  { transform: translate(2px, -3px); }
+  80%  { transform: translate(-2px, 3px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Pulso radioativo */
+
+/*CARROSEL - INICIO*/
+/* Imagem do carrossel */
+.carousel-img {
+  border-radius: 10px;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 12px rgba(245,211,0,0.3);
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+
+/* Pulso radioativo */
+.carousel-item.active .carousel-img {
+  animation: hazardPulse 2s infinite ease-in-out;
+}
+
+/* Glitch leve ao entrar */
+.carousel-item .carousel-img {
+  animation: glitchIn 0.45s ease;
+}
+
+/* Partículas tóxicas */
+.toxic-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.toxic-particles::before,
+.toxic-particles::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 0, 0.8);
+  border-radius: 50%;
+  filter: blur(2px);
+  animation: floatParticles 6s infinite linear;
+}
+
+.toxic-particles::after {
+  width: 4px;
+  height: 4px;
+  background: rgba(0, 255, 0, 0.8);
+  animation-duration: 8s;
+}
+
+/* Animação das partículas */
+@keyframes floatParticles {
+  0% {
+    transform: translate(10%, 110%) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(80%, -20%) scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Glitch */
+@keyframes glitchIn {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(-3px,2px); }
+  40% { transform: translate(3px,-2px); }
+  60% { transform: translate(-2px,-3px); }
+  80% { transform: translate(2px,3px); }
+  100% { transform: translate(0,0); }
+}
+
+/* Controles personalizados */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(80%) sepia(90%) saturate(500%) hue-rotate(10deg);
+}
+/* Container das partículas e fumaça */
+.toxic-particles {
+  position: absolute;
+  top: -20%; /* Fumaça vazando para fora */
+  left: -10%;
+  width: 120%;
+  height: 140%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 3;
+}
+
+/* Fumaça radioativa densa */
+.toxic-particles::before {
+  content: "";
+  position: absolute;
+  bottom: -10%;
+  left: 0;
+  width: 100%;
+  height: 130%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 0, 0.25) 0%,
+    rgba(255, 255, 0, 0.18) 30%,
+    rgba(255, 255, 0, 0.12) 60%,
+    rgba(255, 255, 0, 0.05) 80%,
+    rgba(255, 255, 0, 0) 100%
+  );
+  filter: blur(35px);
+  animation: toxicSmoke 7s infinite ease-in-out;
+  opacity: 0.9;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* Partículas tóxicas */
+.toxic-particles::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 0, 0.9);
+  border-radius: 50%;
+  filter: blur(3px);
+  animation: floatParticles 8s infinite linear;
+  opacity: 0.9;
+}
+
+/* Fumaça reagindo ao hover */
+.carousel-item:hover .toxic-particles::before {
+  opacity: 1;
+  filter: blur(45px);
+  animation-duration: 5s;
+}
+
+/* Partículas aceleram no hover */
+.carousel-item:hover .toxic-particles::after {
+  animation-duration: 5s;
+  transform: scale(1.3);
+}
+
+/* Animação da fumaça subindo */
+@keyframes toxicSmoke {
+  0% {
+    transform: translateY(25%) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-5%) scale(1.15);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-25%) scale(1.25);
+    opacity: 0.5;
+  }
+}
+
+/* Animação das partículas */
+@keyframes floatParticles {
+  0% {
+    transform: translate(10%, 120%) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(80%, -30%) scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Pulso radioativo da imagem */
+.carousel-item.active .carousel-img {
+  animation: hazardPulse 2s infinite ease-in-out;
+}
+
+/* Glitch leve ao entrar */
+.carousel-item .carousel-img {
+  animation: glitchIn 0.45s ease;
+}
+
+@keyframes glitchIn {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(-3px,2px); }
+  40% { transform: translate(3px,-2px); }
+  60% { transform: translate(-2px,-3px); }
+  80% { transform: translate(2px,3px); }
+  100% { transform: translate(0,0); }
+}
+
+/*CARROSEL - FIM*/
+
+/*GALERIA FIM*/
+
+/*BACKGROUND IMAGE INICIO*/
+#hero {
+  position: relative;
+  background-image: url("wallpaper/with-your-destiny.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 80px 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/*BACKGROUND IMAGE FIM*/
+  </style>
+</head>
+
+<body class="overlay-bg">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+<a class="navbar-brand d-flex align-items-center" href="#hero"> <img src="assets/logo-bio.png" width="28" class="me-2 logo-pulse" alt="Logo BioHazard"> BIOHAZARD </a>
+    <div class="theme-toggle me-3" id="themeToggle"></div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+        <li class="nav-item"><a class="nav-link" href="#membros">Liderança</a></li>
+        <li class="nav-item"><a class="nav-link" href="#ranking">Ranking</a></li>
+        <li class="nav-item"><a class="nav-link" href="#recrutamento">Recrutamento</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content" data-aos="zoom-in" data-aos-duration="1200">
+    <!-- Logo grande -->
+<div class="mb-4" id="logoContainer"> <img src="assets/logo-BIO.png" width="180" class="logo-pulse" alt="Logo BioHazard" style="filter: drop-shadow(0 0 12px var(--accent));"> </div>
+    <h1>BioHazard</h1>
+    <p class="hero-sub mt-3">Força ~ Honra ~ RED.</p>
+    <!-- <div class="mt-4">
+      <a href="#recrutamento" class="btn btn-accent btn-lg me-2">Junte-se à Guild</a>
+      <a href="#ranking" class="btn btn-outline-light btn-lg">Ver Ranking</a>
+    </div> -->
+  </div>
+</section>
+
+<!--CARROSEL INICIO-->
+<section id="carrossel" class="container py-5">
+  <h2 class="section-title">Destaques</h2>
+
+  <div id="biohazardCarousel" class="carousel slide" data-bs-ride="carousel">
+
+    <!-- Indicadores -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#biohazardCarousel" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#biohazardCarousel" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#biohazardCarousel" data-bs-slide-to="2"></button>
+    </div>
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="toxic-particles"></div>
+        <img src="printsGaleria/Capture0052.bmp" class="d-block w-100 carousel-img" alt="Slide 1">
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="toxic-particles"></div>
+        <img src="printsGaleria/Capture0053.bmp" class="d-block w-100 carousel-img" alt="Slide 2">
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="toxic-particles"></div>
+        <img src="printsGaleria/Capture0055.bmp" class="d-block w-100 carousel-img" alt="Slide 3">
+      </div>
+
+    </div>
+
+    <!-- Controles -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#biohazardCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#biohazardCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+
+  </div>
+</section>
+
+<!--CARROSEL FIM-->
+<!-- GALERIA INICIO -->
+
+<section id="galeria" class="container py-5">
+  <h2 class="section-title">Galeria</h2>
+
+  <p class="text-center mb-4">
+    Imagens e momentos épicos do WYD Global.
+  </p>
+
+  <div class="row g-4">
+
+    <!-- Imagem 1 -->
+    <div class="col-md-4 col-sm-6" data-aos="fade-up">
+      <div class="gallery-item">
+        <img src="printsGaleria/Capture0060.bmp" alt="Screenshot WYD">
+      </div>
+    </div>
+
+    <!-- Imagem 2 -->
+    <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+      <div class="gallery-item">
+        <img src="printsGaleria/Capture0085.bmp" alt="Screenshot WYD">
+      </div>
+    </div>
+
+    <!-- Imagem 3 -->
+    <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+      <div class="gallery-item">
+        <img src="printsGaleria/Capture0086.bmp" alt="Screenshot WYD">
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- GALERIA FIM -->
+
+<!-- SOBRE -->
+<section id="sobre" class="container py-5">
+  <h2 class="section-title" data-aos="fade-up">Sobre a Guild</h2>
+  <p class="text-center fs-5" data-aos="fade-up" data-aos-delay="150">
+    A <strong>BioHazard</strong> é uma guild tradicional de WYD, focada em guerra, evolução e respeito.
+    Jogadores experientes, organização séria e um ambiente onde cada membro importa.
+    Nosso objetivo é simples: dominar o servidor com estilo.
+  </p>
+</section>
+
+<section id="membros" class="container py-5">
+  <h2 class="section-title" data-aos="fade-up">Liderança</h2>
+  <div class="row g-4" id="membersGrid">
+    <!-- Cards de membros serão inseridos via JS -->
+  </div>
+</section>
+
+<!-- RANKING DINÂMICO -->
+<section id="ranking" class="container py-5">
+  <h2 class="section-title" data-aos="fade-up">Ranking da Guild</h2>
+
+  <div class="d-flex justify-content-between align-items-center mb-3" data-aos="fade-up" data-aos-delay="100">
+    <span class="text-muted">Ordenar por:</span>
+    <div>
+      <button class="btn btn-sm btn-outline-light me-2" data-sort="power">Poder</button>
+      <button class="btn btn-sm btn-outline-light me-2" data-sort="level">Level</button>
+      <button class="btn btn-sm btn-outline-light" data-sort="role">Cargo</button>
+    </div>
+  </div>
+
+  <div class="table-responsive" data-aos="fade-up" data-aos-delay="200">
+    <table class="table table-dark table-striped ranking-table align-middle">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nick</th>
+          <th>Cargo</th>
+          <th>Classe</th>
+          <th>Level</th>
+          <th>Poder</th>
+        </tr>
+      </thead>
+      <tbody id="rankingBody">
+        <!-- Linhas geradas via JS -->
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- RECRUTAMENTO -->
+<section id="recrutamento" class="container py-5">
+  <h2 class="section-title" data-aos="fade-up">Recrutamento</h2>
+  <p class="text-center fs-5 mb-4" data-aos="fade-up" data-aos-delay="100">
+    Procuramos jogadores ativos de capa VERMELHA, com espírito de equipe e vontade de crescer.
+    Se você curte guerra, PVP, eventos e zoeira saudável, a BioHazard é o seu lugar.
+  </p>
+  <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
+    <a href="#contato" class="btn btn-accent btn-lg">Quero entrar na Guild</a>
+  </div>
+</section>
+
+<section id="discord" class="container py-5">
+  <h2 class="section-title">Discord</h2>
+
+  <p class="text-center mb-4">
+    Entre no nosso servidor e participe da comunidade BioHazard.
+  </p>
+
+  <div class="discord-wrapper" data-aos="fade-up">
+    <iframe 
+      src="https://discord.com/widget?id=859171734954180638&theme=dark" 
+      width="100%" 
+      height="500" 
+      allowtransparency="true" 
+      frameborder="0">
+    </iframe>
+  </div>
+</section>
+
+
+<!-- CONTATO -->
+<section id="contato" class="container py-5">
+  <h2 class="section-title" data-aos="fade-up">Contato</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="150">
+
+      <p class="fs-5 mb-4">
+        Fale diretamente com a liderança da BioHazard pelo WhatsApp.
+      </p>
+
+      <a href="https://wa.me/5521981878093" 
+         target="_blank" 
+         class="btn btn-accent btn-lg"
+         style="padding: 14px 28px; font-size: 1.2rem;">
+        Entrar em Contato pelo WhatsApp
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section id="ranking" class="container py-5">
+  <h2 class="section-title">Ranking Oficial</h2>
+
+  <div style="width: 100%; height: 80vh; border: 2px solid var(--accent); border-radius: 10px; overflow: hidden;">
+    <iframe 
+      id="rankingFrame"
+      src="https://ranking.raidhut.com/?lang=pt-BR"
+      style="width: 100%; height: 100%; border: none;"
+      loading="lazy"
+      allowfullscreen
+    >
+    </iframe>
+  </div>
+</section>
+
+<section id="videos" class="container py-5">
+  <h2 class="section-title">Vídeos</h2>
+
+  <p class="text-center mb-4">
+    Conteúdo da comunidade e vídeos relacionados ao WYD Global.
+  </p>
+
+  <div class="row g-4">
+
+    <!-- Vídeo 1 -->
+    <div class="col-md-6" data-aos="fade-up">
+      <div class="video-wrapper">
+        <iframe 
+          src="https://www.youtube.com/embed/RLDoKXP-OwM"
+          title="YouTube video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Vídeo 2 -->
+    <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
+      <div class="video-wrapper">
+        <iframe 
+          src="https://www.youtube.com/embed/fWQK9Gzfwkw"
+          title="YouTube video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+        <!-- Vídeo 3 -->
+    <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
+      <div class="video-wrapper">
+        <iframe 
+          src="https://www.youtube.com/embed/YuAMNAHcs3o"
+          title="YouTube video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Vídeo 4 -->
+    <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
+      <div class="video-wrapper">
+        <iframe 
+          src="https://www.youtube.com/embed/St4J8qwqbR4"
+          title="YouTube video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="videosPlaylist" class="container py-5">
+  <p class="text-center mb-4">
+    Feed automático de vídeos da comunidade BioHazard.
+  </p>
+
+  <div class="video-wrapper">
+    <iframe 
+      src="https://www.youtube.com/embed?listType=playlist&list=PL-FdO3sDtf0gnDYvSMqzUncdoACCSvarv"
+      title="YouTube Playlist"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<audio id="bg-music" loop>
+  <source src="assets/audio/music/town01.mp3" type="audio/mpeg">
+</audio>
+
+<footer>
+  BioHazard © 2026 — WYD Global Guild Portal • Desenvolvido por Keffra
+</footer>
+
+<!-- JS libs -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+
+<script>
+  // Inicializa AOS
+  AOS.init({
+    once: true,
+    duration: 800,
+    offset: 80
+  });
+
+  // Animação GSAP no logo
+  gsap.from("#logo-biohazard", {
+    duration: 2,
+    scale: 0.4,
+    rotation: -45,
+    opacity: 0,
+    ease: "power3.out"
+  });
+
+  // Tema alternativo (Neo / WYD Clássico)
+  const themeToggle = document.getElementById('themeToggle');
+  let isClassic = false;
+
+  themeToggle.addEventListener('click', () => {
+    isClassic = !isClassic;
+    document.body.classList.toggle('theme-classic', isClassic);
+    themeToggle.textContent = 'Tema: ' + (isClassic ? 'WYD Clássico' : 'Neo');
+  });
+
+  // "API fake" - carrega membros de members.json
+  let members = [];
+
+  async function loadMembers() {
+    try {
+      const res = await fetch('members.json');
+      members = await res.json();
+      renderMembers();
+      renderRanking();
+    } catch (e) {
+      console.error('Erro ao carregar members.json', e);
+    }
+
+    
+    document.getElementById("rankingFrame").addEventListener("load", () => { 
+  const iframe = document.getElementById("rankingFrame"); 
+  const tryClick = setInterval(() => { 
+    try { 
+      const doc = iframe.contentDocument || iframe.contentWindow.document; 
+      // Seleciona o botão pelo src da imagem interna 
+      const botao = doc.querySelector("button img[src='https://wydmisc.raidhut.com.br/guild/img_guilds/global/w01002041.bmp']"); 
+      if (botao) { 
+        botao.click(); clearInterval(tryClick); 
+      console.log("Filtro BioHazard aplicado automaticamente."); 
+      } 
+      } catch (e) { 
+        console.log("Sem acesso ao DOM do iframe (cross-domain)."); 
+        clearInterval(tryClick); 
+        } 
+        }, 500); 
+        });
+
+  }
+
+  function renderMembers() {
+    const grid = document.getElementById('membersGrid');
+    grid.innerHTML = '';
+    members.forEach((m, index) => {
+      const col = document.createElement('div');
+      col.className = 'col-md-4';
+      col.innerHTML = `
+        <div class="card-bio p-3 h-100" data-aos="fade-up" data-aos-delay="${index * 80}">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h4 class="mb-0">${m.nick}</h4>
+            <span class="badge-role">${m.role}</span>
+          </div>
+          <p class="mb-1"><strong>Classe:</strong> ${m.class}</p>
+          <p class="mb-1"><strong>Level:</strong> ${m.level}</p>
+          <p class="mb-0 text-muted"><strong>Poder:</strong> ${m.power.toLocaleString('pt-BR')}</p>
+        </div>
+      `;
+      grid.appendChild(col);
+    });
+    AOS.refresh();
+  }
+
+  function renderRanking(sortBy = 'power') {
+    const tbody = document.getElementById('rankingBody');
+    tbody.innerHTML = '';
+
+    const sorted = [...members].sort((a, b) => {
+      if (sortBy === 'role') return a.role.localeCompare(b.role);
+      if (sortBy === 'level') return b.level - a.level;
+      return b.power - a.power;
+    });
+
+    sorted.forEach((m, idx) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${idx + 1}</td>
+        <td>${m.nick}</td>
+        <td>${m.role}</td>
+        <td>${m.class}</td>
+        <td>${m.level}</td>
+        <td>${m.power.toLocaleString('pt-BR')}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // Botões de ordenação
+  document.querySelectorAll('[data-sort]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const sortBy = btn.getAttribute('data-sort');
+      renderRanking(sortBy);
+    });
+  });
+
+  // Carrega membros ao iniciar
+  loadMembers();
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const audio = document.getElementById("bg-music");
+
+    // Tenta tocar sem som (alguns navegadores permitem)
+    audio.volume = 0.4;
+
+    // Se o navegador bloquear, ativa no primeiro clique
+    const tryPlay = () => {
+      audio.play().catch(() => {});
+      document.removeEventListener("click", tryPlay);
+      document.removeEventListener("scroll", tryPlay);
+    };
+
+    document.addEventListener("click", tryPlay);
+    document.addEventListener("scroll", tryPlay);
+  });
+
+</script>
+
+</body>
+<
