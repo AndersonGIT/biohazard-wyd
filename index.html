@@ -885,7 +885,7 @@
   </div>
 </section>
 
-<audio id="bg-music" autoplay loop muted>
+<audio id="bg-music" loop>
   <source src="assets/audio/music/town01.mp3" type="audio/mpeg">
 </audio>
 
@@ -1016,10 +1016,44 @@
   // Carrega membros ao iniciar
   loadMembers();
 
-setTimeout(() => {
+// setTimeout(() => {
+//   const audio = document.getElementById("bg-music");
+//   audio.muted = false;
+//   audio.volume = 0.2;
+// }, 500);
+
+document.addEventListener("DOMContentLoaded", () => {
   const audio = document.getElementById("bg-music");
-  audio.muted = false;
-  audio.volume = 0.2;
-}, 500);
+  audio.volume = 0;
+
+  const startMusic = () => {
+    audio.play().then(() => {
+      fadeIn(audio, 0.4, 3000);
+    }).catch(() => {});
+    document.removeEventListener("click", startMusic);
+    document.removeEventListener("scroll", startMusic);
+    document.removeEventListener("keydown", startMusic);
+  };
+
+  document.addEventListener("click", startMusic);
+  document.addEventListener("scroll", startMusic);
+  document.addEventListener("keydown", startMusic);
+});
+
+function fadeIn(audio, finalVolume, duration) {
+  let volume = 0;
+  const step = finalVolume / (duration / 50);
+
+  const interval = setInterval(() => {
+    volume += step;
+    if (volume >= finalVolume) {
+      audio.volume = finalVolume;
+      clearInterval(interval);
+    } else {
+      audio.volume = volume;
+    }
+  }, 50);
+}
+
 </script>
 </body>
