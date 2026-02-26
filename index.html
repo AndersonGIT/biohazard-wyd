@@ -561,6 +561,160 @@
 }
 
 /*BACKGROUND IMAGE FIM*/
+
+/*CARD MEMBROS - INICIO*/
+.card-bio {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 260px;
+  display: flex;
+  align-items: flex-end;
+  box-shadow: 0 0 12px rgba(246, 255, 0, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover */
+.card-bio:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px rgba(246, 255, 0, 0.45);
+}
+
+/* Overlay escuro para garantir leitura */
+.card-overlay {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85),
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.1)
+  );
+  color: #fff;
+}
+
+.card-overlay h4,
+.card-overlay p,
+.card-overlay strong {
+  position: relative;
+  display: inline-block;
+  padding: 2px 4px;
+
+  color: #fff;
+  font-weight: 600;
+
+  /* contorno nítido */
+  -webkit-text-stroke: 0.6px rgba(0,0,0,0.85);
+
+  /* sombra curta e precisa */
+  text-shadow:
+    0 1px 2px rgba(0,0,0,0.9),
+    0 0 3px rgba(0,0,0,0.7);
+}
+
+/* micro-background aderido ao texto */
+.card-overlay h4::before,
+.card-overlay p::before,
+.card-overlay strong::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  border-radius: 4px;
+  z-index: -1;
+  backdrop-filter: blur(2px);
+}
+
+
+/* Badge com amarelo radioativo */
+.badge-role {
+  background: rgba(246, 255, 0, 0.2);
+  padding: 4px 10px;
+  border-radius: 6px;
+  color: #f6ff00;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(246, 255, 0, 0.5);
+}
+
+/* Botão WhatsApp */
+.btn-whatsapp {
+  display: inline-block;
+  background: #f6ff00;
+  color: #000;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  text-shadow: none;
+}
+
+.btn-whatsapp:hover {
+  background: #d4d900;
+}
+
+@media (max-width: 600px) {
+  .card-bio {
+    background-position: top;
+  }
+
+  .card-overlay {
+    background: rgba(0, 0, 0, 0.85);
+  }
+}
+
+/*CARD MEMBROS - FIM*/
+
+/*RANKING GUILD INICIO*/
+.ranking-table {
+  text-align: center;
+}
+
+.ranking-table th,
+.ranking-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.rank-1 {
+  background: rgba(68, 85, 243, 0.25);
+  color: #a4f808;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(4, 243, 56, 0.6);
+  border-left: 6px solid #f6ff00;
+}
+
+.rank-2 {
+  background: rgba(246, 255, 0, 0.15);
+  color: #f1f163;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(239, 245, 70, 0.6);
+  border-left: 4px solid #e0e05a;
+}
+
+.rank-3 {
+  background: rgba(246, 255, 0, 0.10);
+  color: #cece6e;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(239, 245, 70, 0.6);
+  border-left: 2px solid #c9c94d;
+}
+
+.rank-1 td:first-child::before {
+  content: "🥇 ";
+}
+
+.rank-2 td:first-child::before {
+  content: "🥈 ";
+}
+
+.rank-3 td:first-child::before {
+  content: "🥉 ";
+}
+
+/*RANKING GUILD FIM*/
   </style>
 </head>
 
@@ -569,7 +723,7 @@
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
   <div class="container">
-<a class="navbar-brand d-flex align-items-center" href="#hero"> <img src="assets/logo-bio.png" width="28" class="me-2 logo-pulse" alt="Logo BioHazard"> BIOHAZARD </a>
+<a class="navbar-brand d-flex align-items-center" href="#hero"> <img src="assets/logo-bio.png" width="28" class="me-2 logo-pulse" alt="Logo BioHazard"> <span>BIOHAZARD</span> </a>
     <div class="theme-toggle me-3" id="themeToggle"></div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -583,6 +737,7 @@
         <li class="nav-item"><a class="nav-link" href="#ranking">Ranking</a></li>
         <li class="nav-item"><a class="nav-link" href="#recrutamento">Recrutamento</a></li>
         <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+        <li class="nav-item"><img src="assets/capasReinos/red-celestial.jpeg" width="25" class="logo-pulse" alt="RedCape"></li>
       </ul>
     </div>
   </div>
@@ -683,7 +838,6 @@
         <img src="printsGaleria/Capture0086.bmp" alt="Screenshot WYD">
       </div>
     </div>
-
   </div>
 </section>
 <!-- GALERIA FIM -->
@@ -702,6 +856,8 @@
   <h2 class="section-title" data-aos="fade-up">Liderança</h2>
   <div class="row g-4" id="membersGrid">
     <!-- Cards de membros serão inseridos via JS -->
+</div>
+
   </div>
 </section>
 
@@ -709,25 +865,27 @@
 <section id="ranking" class="container py-5">
   <h2 class="section-title" data-aos="fade-up">Ranking da Guild</h2>
 
-  <div class="d-flex justify-content-between align-items-center mb-3" data-aos="fade-up" data-aos-delay="100">
+  <!-- <div class="d-flex justify-content-between align-items-center mb-3" data-aos="fade-up" data-aos-delay="100">
     <span class="text-muted">Ordenar por:</span>
     <div>
       <button class="btn btn-sm btn-outline-light me-2" data-sort="power">Poder</button>
       <button class="btn btn-sm btn-outline-light me-2" data-sort="level">Level</button>
       <button class="btn btn-sm btn-outline-light" data-sort="role">Cargo</button>
     </div>
-  </div>
+  </div> -->
 
-  <div class="table-responsive" data-aos="fade-up" data-aos-delay="200">
+  <div class="table-responsive ranking-table" data-aos="fade-up" data-aos-delay="200">
     <table class="table table-dark table-striped ranking-table align-middle">
       <thead>
         <tr>
           <th>#</th>
           <th>Nick</th>
           <th>Cargo</th>
-          <th>Classe</th>
+          <th>Classes</th>
           <th>Level</th>
           <th>Poder</th>
+          <th>Kingdom</th>
+          <th>Badge</th>
         </tr>
       </thead>
       <tbody id="rankingBody">
@@ -779,8 +937,9 @@
         Fale diretamente com a liderança da BioHazard pelo WhatsApp.
       </p>
 
-      <a href="https://wa.me/5521981878093" 
-         target="_blank" 
+      <a         
+        href="https://chat.whatsapp.com/E2BYdjPg7xVBMpEqWm65rs?mode=hq2tcla"
+        target="_blank" 
          class="btn btn-accent btn-lg"
          style="padding: 14px 28px; font-size: 1.2rem;">
         Entrar em Contato pelo WhatsApp
@@ -790,20 +949,6 @@
   </div>
 </section>
 
-<section id="ranking" class="container py-5">
-  <h2 class="section-title">Ranking Oficial</h2>
-
-  <div style="width: 100%; height: 80vh; border: 2px solid var(--accent); border-radius: 10px; overflow: hidden;">
-    <iframe 
-      id="rankingFrame"
-      src="https://ranking.raidhut.com/?lang=pt-BR"
-      style="width: 100%; height: 100%; border: none;"
-      loading="lazy"
-      allowfullscreen
-    >
-    </iframe>
-  </div>
-</section>
 
 <section id="videos" class="container py-5">
   <h2 class="section-title">Vídeos</h2>
@@ -885,6 +1030,21 @@
   </div>
 </section>
 
+<section id="ranking" class="container py-5">
+  <h2 class="section-title">Ranking Oficial</h2>
+
+  <div style="width: 100%; height: 80vh; border: 2px solid var(--accent); border-radius: 10px; overflow: hidden;">
+    <iframe 
+      id="rankingFrame"
+      src="https://ranking.raidhut.com/?lang=pt-BR"
+      style="width: 100%; height: 100%; border: none;"
+      loading="lazy"
+      allowfullscreen
+    >
+    </iframe>
+  </div>
+</section>
+
 <audio id="bg-music" loop>
   <source src="assets/audio/music/town01.mp3" type="audio/mpeg">
 </audio>
@@ -956,30 +1116,47 @@
         } 
         }, 500); 
         });
-
   }
 
   function renderMembers() {
-    const grid = document.getElementById('membersGrid');
-    grid.innerHTML = '';
-    members.forEach((m, index) => {
-      const col = document.createElement('div');
-      col.className = 'col-md-4';
-      col.innerHTML = `
-        <div class="card-bio p-3 h-100" data-aos="fade-up" data-aos-delay="${index * 80}">
+  const grid = document.getElementById('membersGrid');
+  grid.innerHTML = '';
+
+  members.forEach((m, index) => {
+    const col = document.createElement('div');
+    col.className = 'col-md-4';
+
+    col.innerHTML = `
+      <div class="card-bio" data-aos="fade-up" data-aos-delay="${index * 80}"
+           style="background-image: url('${m.image}');">
+
+        <div class="card-overlay">
           <div class="d-flex justify-content-between align-items-center mb-2">
             <h4 class="mb-0">${m.nick}</h4>
             <span class="badge-role">${m.role}</span>
           </div>
-          <p class="mb-1"><strong>Classe:</strong> ${m.class}</p>
-          <p class="mb-1"><strong>Level:</strong> ${m.level}</p>
-          <p class="mb-0 text-muted"><strong>Poder:</strong> ${m.power.toLocaleString('pt-BR')}</p>
+
+          <p class="mb-1"><strong>Classe:</strong> ${m.classCelestial} / ${m.classSubCelestial}</p>
+          <p class="mb-1"><strong>Level:</strong> ${m.levelCelestial} / ${m.levelSubCelestial}</p>
+          <!--<p class="mb-3 text-muted"><strong>Poder: ${m.power.toLocaleString('pt-BR')}</strong></p>-->
+
+          ${m.showWhatsApp ? 
+          `<a href="https://wa.me/${m.whatsapp}" target="_blank" class="btn-whatsapp">
+            Falar no WhatsApp
+          </a>` 
+          : 
+          ''
+          }
         </div>
-      `;
-      grid.appendChild(col);
-    });
-    AOS.refresh();
-  }
+      </div>
+    `;
+
+    grid.appendChild(col);
+  });
+
+  AOS.refresh();
+}
+
 
   function renderRanking(sortBy = 'power') {
     const tbody = document.getElementById('rankingBody');
@@ -993,14 +1170,23 @@
 
     sorted.forEach((m, idx) => {
       const tr = document.createElement('tr');
+
+      if (idx === 0) tr.classList.add("rank-1"); 
+      if (idx === 1) tr.classList.add("rank-2"); 
+      if (idx === 2) tr.classList.add("rank-3");
+
+
       tr.innerHTML = `
         <td>${idx + 1}</td>
         <td>${m.nick}</td>
         <td>${m.role}</td>
-        <td>${m.class}</td>
-        <td>${m.level}</td>
+        <td>${m.classCelestial} / ${m.classSubCelestial}</td>
+        <td>${m.levelCelestial} / ${m.levelSubCelestial}</td>
         <td>${m.power.toLocaleString('pt-BR')}</td>
+        <td><img width="22" src="${m.kingdom}" alt="Kingdom Badge" class="badge-img"></td>
+        <td><img width='28' src="${m.guildBadge}" alt="Guild Badge" class="badge-img"></td>
       `;
+
       tbody.appendChild(tr);
     });
   }
@@ -1016,28 +1202,43 @@
   // Carrega membros ao iniciar
   loadMembers();
 
-// setTimeout(() => {
-//   const audio = document.getElementById("bg-music");
-//   audio.muted = false;
-//   audio.volume = 0.2;
-// }, 500);
-
 document.addEventListener("DOMContentLoaded", () => {
   const audio = document.getElementById("bg-music");
   audio.volume = 0;
 
   const startMusic = () => {
     audio.play().then(() => {
-      fadeIn(audio, 0.4, 3000);
+      fadeIn(audio, 0.1, 60000);
     }).catch(() => {});
-    document.removeEventListener("click", startMusic);
-    document.removeEventListener("scroll", startMusic);
-    document.removeEventListener("keydown", startMusic);
+    
+  document.removeEventListener("click", startMusic);
+  document.removeEventListener("scroll", startMusic);
+  document.removeEventListener("keydown", startMusic);
+  document.removeEventListener("dblclick", startMusic);
+  document.removeEventListener("mousedown", startMusic);
+  document.removeEventListener("mousemove", startMusic);
+  document.removeEventListener("mouseenter", startMusic);
+  document.removeEventListener("mouseleave", startMusic);
+  document.removeEventListener("touchstart", startMusic);
+  document.removeEventListener("touchmove", startMusic);
+  document.removeEventListener("touchend", startMusic);
+  document.removeEventListener("touchcancel", startMusic);
+  document.removeEventListener("wheel", startMusic);
   };
 
+  document.addEventListener("wheel", startMusic);
   document.addEventListener("click", startMusic);
   document.addEventListener("scroll", startMusic);
   document.addEventListener("keydown", startMusic);
+  document.addEventListener("dblclick", startMusic);
+  document.addEventListener("mousedown", startMusic);
+  document.addEventListener("mousemove", startMusic);
+  document.addEventListener("mouseenter", startMusic);
+  document.addEventListener("mouseleave", startMusic);
+  document.addEventListener("touchstart", startMusic);
+  document.addEventListener("touchmove", startMusic);
+  document.addEventListener("touchend", startMusic);
+  document.addEventListener("touchcancel", startMusic);
 });
 
 function fadeIn(audio, finalVolume, duration) {
@@ -1054,6 +1255,18 @@ function fadeIn(audio, finalVolume, duration) {
     }
   }, 50);
 }
+
+document.addEventListener("visibilitychange", () => {
+  const audio = document.getElementById("bg-music");
+
+  if (document.hidden) {
+    // Saiu da aba / minimizou / trocou de app
+    audio.pause();
+  } else {
+    // Voltou para a aba
+    audio.play().catch(() => {});
+  }
+});
 
 </script>
 </body>
