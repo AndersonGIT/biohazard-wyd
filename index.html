@@ -33,7 +33,7 @@
       --accent-soft: #b38f00;
       --text-main: #f5f5dc;
       --text-muted: #c0b080;
-      background-image: url('https://images.unsplash.com/photo-1526401485004-2fa806b5e2c9?auto=format&fit=crop&w=1400&q=80');
+      
       background-attachment: fixed;
       background-size: cover;
       background-position: center;
@@ -82,7 +82,6 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: url('https://images.unsplash.com/photo-1605902711622-cfb43c44367e?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
       filter: grayscale(40%);
       transform: scale(1.1);
     }
@@ -570,7 +569,7 @@
   background-position: center;
   border-radius: 12px;
   overflow: hidden;
-  height: 260px;
+  height: 450px;
   display: flex;
   align-items: flex-end;
   box-shadow: 0 0 12px rgba(246, 255, 0, 0.25);
@@ -717,6 +716,79 @@
 
 /*RANKING GUILD FIM*/
 
+/*STREAMERS INICIO*/
+.stream-section {
+  margin: 60px auto;
+  text-align: center;
+}
+
+.stream-section h2 {
+  color: #f6ff00;
+  text-shadow: 0 0 8px rgba(246,255,0,0.6);
+  margin-bottom: 25px;
+}
+
+.stream-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.stream-card {
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(246,255,0,0.3);
+  border-radius: 10px;
+  padding: 20px 30px;
+  width: 260px;
+  backdrop-filter: blur(4px);
+  transition: transform 0.2s ease;
+}
+
+.stream-card:hover {
+  transform: scale(1.05);
+}
+
+.stream-card img {
+  width: 150px;
+  margin-bottom: 10px;
+}
+
+.stream-card h3 {
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.stream-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stream-card li {
+  margin: 8px 0;
+}
+
+.stream-card a {
+  color: #f6ff00;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.stream-card a:hover {
+  text-decoration: underline;
+}
+
+/* Cores específicas */
+.stream-card.twitch {
+  border-color: #9146ff;
+}
+
+.stream-card.youtube {
+  border-color: #ff0000;
+}
+
+/*STREAMERS FIM*/
   </style>
 </head>
 
@@ -760,6 +832,70 @@
   </div>
 </section>
 
+<!-- RANKING DINÂMICO -->
+<section id="ranking" class="container py-5">
+  <h2 class="section-title" data-aos="fade-up">Ranking da Guild</h2>
+
+  <!-- <div class="d-flex justify-content-between align-items-center mb-3" data-aos="fade-up" data-aos-delay="100">
+    <span class="text-muted">Ordenar por:</span>
+    <div>
+      <button class="btn btn-sm btn-outline-light me-2" data-sort="power">Poder</button>
+      <button class="btn btn-sm btn-outline-light me-2" data-sort="level">Level</button>
+      <button class="btn btn-sm btn-outline-light" data-sort="role">Cargo</button>
+    </div>
+  </div> -->
+
+  <div style="max-height: 500px; overflow-x: auto;" class="table-responsive ranking-table" data-aos="fade-up" data-aos-delay="200">
+    <table class="table table-dark table-striped ranking-table align-middle " >
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nick</th>
+          <th>Cargo</th>
+          <th>Classes</th>
+          <th>Level</th>
+          <th>Poder</th>
+          <th>Kingdom</th>
+          <th>Badge</th>
+        </tr>
+      </thead>
+      <tbody id="rankingBody">
+        <!-- Linhas geradas via JS -->
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!--STREAMERS INICIO-->
+<section id="streaming" class="stream-section">
+    <h2>Streamers</h2>
+
+    <div class="stream-grid">
+
+        <!-- Twitch -->
+        <div class="stream-card twitch">
+            <img width="180" src="assets/twitch-logo-png-1856.png" alt="Twitch">
+            <ul>
+                <li><a href="https://www.twitch.tv/taqueparill" target="_blank">TAQUEPARILL</a></li>
+                <li><a href="https://twitch.tv/Keffra" target="_blank">Keffra</a></li>
+                <li><a href="https://www.twitch.tv/goudenlionn" target="_blank">Goudenlion</a></li>
+            </ul>
+        </div>
+
+        <!-- YouTube -->
+        <div class="stream-card youtube">
+            <img src="assets/logo-youtube-white.png" alt="YouTube">
+            <ul>
+                <br/>
+                <li><a href="https://www.youtube.com/@taqueparil" target="_blank">TAQUEPARILL</a></li>
+                <li><a href="https://www.youtube.com/@DiiegoBR" target="_blank">Keffra</a></li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!--STREAMERS FIM-->
 <!--CARROSEL INICIO-->
 <section id="carrossel" class="container py-5">
   <h2 class="section-title">Destaques</h2>
@@ -848,9 +984,8 @@
 <section id="sobre" class="container py-5">
   <h2 class="section-title" data-aos="fade-up">Sobre a Guild</h2>
   <p class="text-center fs-5" data-aos="fade-up" data-aos-delay="150">
-    A <strong>BioHazard</strong> é uma guild tradicional de WYD, focada em guerra, evolução e respeito.
-    Jogadores experientes, organização séria e um ambiente onde cada membro importa.
-    Nosso objetivo é simples: dominar o servidor com estilo.
+    A <strong class="logo-pulse">BioHazard</strong> é uma guild <strong class="logo-pulse" style="color: red;">PVP</strong> tradicional de WYD, focada em guerra, evolução e respeito.
+    <br/>Jogadores experientes, organização séria e um ambiente onde cada membro importa.
   </p>
 </section>
 
@@ -863,49 +998,16 @@
   </div>
 </section>
 
-<!-- RANKING DINÂMICO -->
-<section id="ranking" class="container py-5">
-  <h2 class="section-title" data-aos="fade-up">Ranking da Guild</h2>
-
-  <!-- <div class="d-flex justify-content-between align-items-center mb-3" data-aos="fade-up" data-aos-delay="100">
-    <span class="text-muted">Ordenar por:</span>
-    <div>
-      <button class="btn btn-sm btn-outline-light me-2" data-sort="power">Poder</button>
-      <button class="btn btn-sm btn-outline-light me-2" data-sort="level">Level</button>
-      <button class="btn btn-sm btn-outline-light" data-sort="role">Cargo</button>
-    </div>
-  </div> -->
-
-  <div class="table-responsive ranking-table" data-aos="fade-up" data-aos-delay="200">
-    <table class="table table-dark table-striped ranking-table align-middle">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Nick</th>
-          <th>Cargo</th>
-          <th>Classes</th>
-          <th>Level</th>
-          <th>Poder</th>
-          <th>Kingdom</th>
-          <th>Badge</th>
-        </tr>
-      </thead>
-      <tbody id="rankingBody">
-        <!-- Linhas geradas via JS -->
-      </tbody>
-    </table>
-  </div>
-</section>
 
 <!-- RECRUTAMENTO -->
 <section id="recrutamento" class="container py-5">
   <h2 class="section-title" data-aos="fade-up">Recrutamento</h2>
   <p class="text-center fs-5 mb-4" data-aos="fade-up" data-aos-delay="100">
-    Procuramos jogadores ativos de capa VERMELHA, com espírito de equipe e vontade de crescer.
+    Procuramos jogadores ativos de capa <strong style="color: red">VERMELHA</strong>, com espírito de equipe e vontade de crescer.
     Se você curte guerra, PVP, eventos e zoeira saudável, a BioHazard é o seu lugar.
   </p>
   <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
-    <a href="#contato" class="btn btn-accent btn-lg">Quero entrar na Guild</a>
+    <a href="https://chat.whatsapp.com/E2BYdjPg7xVBMpEqWm65rs?mode=hq2tcla" class="btn btn-accent btn-lg">Quero entrar na Guild</a>
   </div>
 </section>
 
@@ -1173,21 +1275,22 @@
     sorted.forEach((m, idx) => {
       const tr = document.createElement('tr');
 
-      if (idx === 0) tr.classList.add("rank-1"); 
-      if (idx === 1) tr.classList.add("rank-2"); 
-      if (idx === 2) tr.classList.add("rank-3");
 
 
       tr.innerHTML = `
-        <td>${idx + 1}</td>
-        <td>${m.nick}</td>
-        <td>${m.role}</td>
-        <td>${m.classCelestial} / ${m.classSubCelestial}</td>
-        <td>${m.levelCelestial} / ${m.levelSubCelestial}</td>
-        <td>${m.power.toLocaleString('pt-BR')}</td>
-        <td><img width="22" src="${m.kingdom}" alt="Kingdom Badge" class="badge-img"></td>
-        <td><img width='28' src="${m.guildBadge}" alt="Guild Badge" class="badge-img"></td>
+        <td><span ${idx === 0 ? 'class="logo-pulse"' : ''}>${idx + 1}</span></td>
+        <td><span ${idx === 0 ? 'class="logo-pulse"' : ''}>${m.nick}</span></td>
+        <td><span ${idx === 0 ? 'class="logo-pulse"' : ''}>${m.role}</span></td>
+        <td><span ${idx === 0 ? 'class="logo-pulse"' : ''}>${m.classCelestial} / ${m.classSubCelestial}</span></td>
+        <td><span ${idx === 0 ? 'class="logo-pulse"' : ''}>${m.levelCelestial} / ${m.levelSubCelestial}</span></td>
+        <td><span ${idx === 0 ? 'class="logo-pulse"' : ''}>${m.power.toLocaleString('pt-BR')}</span></td>
+        <td><span ${idx === 0 ? 'class="logo-pulse"' : ''}><img width="22" src="${m.kingdom}" alt="Kingdom Badge" class="badge-img"></span></td>
+        <td><span ${idx === 0 ? 'class="logo-pulse"' : ''}><img width='28' src="${m.guildBadge}" alt="Guild Badge" class="badge-img"></span></td>
       `;
+
+      if (idx === 0) tr.classList.add("rank-1");
+      if (idx === 1) tr.classList.add("rank-2"); 
+      if (idx === 2) tr.classList.add("rank-3");
 
       tbody.appendChild(tr);
     });
