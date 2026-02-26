@@ -885,7 +885,7 @@
   </div>
 </section>
 
-<audio id="bg-music" loop>
+<audio id="bg-music" autoplay loop muted>
   <source src="assets/audio/music/town01.mp3" type="audio/mpeg">
 </audio>
 
@@ -1016,24 +1016,10 @@
   // Carrega membros ao iniciar
   loadMembers();
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const audio = document.getElementById("bg-music");
-
-    // Tenta tocar sem som (alguns navegadores permitem)
-    audio.volume = 0.4;
-
-    // Se o navegador bloquear, ativa no primeiro clique
-    const tryPlay = () => {
-      audio.play().catch(() => {});
-      document.removeEventListener("click", tryPlay);
-      document.removeEventListener("scroll", tryPlay);
-    };
-
-    document.addEventListener("click", tryPlay);
-    document.addEventListener("scroll", tryPlay);
-  });
-
+setTimeout(() => {
+  const audio = document.getElementById("bg-music");
+  audio.muted = false;
+  audio.volume = 0.2;
+}, 500);
 </script>
-
 </body>
-<
