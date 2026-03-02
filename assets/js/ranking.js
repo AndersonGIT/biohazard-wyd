@@ -53,8 +53,6 @@
       tr.innerHTML = `
         <td><span ${idx === 0 ? 'class="logo-pulse"' : ''}>${idx + 1}</span></td>
         <td><span ${idx === 0 ? 'class="logo-pulse"' : ''}>${r.nick}</span></td>        
-        <td><span ${idx === 0 ? 'class="logo-pulse"' : ''}>${r.classCelestial} / ${r.classSubCelestial}</span></td>
-        <td><span ${idx === 0 ? 'class="logo-pulse"' : ''}>${r.levelCelestial} / ${r.levelSubCelestial}</span></td>
         <td><span ${idx === 0 ? 'class="logo-pulse"' : ''}>${r.power.toLocaleString('pt-BR')}</span></td>
         <td><span ${idx === 0 ? 'class="logo-pulse"' : ''}><img width="22" src="${r.kingdom}" alt="Kingdom Badge" class="badge-img"></span></td>
         <td><span ${idx === 0 ? 'class="logo-pulse"' : ''}><img width='28' src="${r.guildBadge}" alt="Guild Badge" class="badge-img"></span></td>
