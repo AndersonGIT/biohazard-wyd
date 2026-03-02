@@ -1,0 +1,64 @@
+    @keyframes hazardPulse { 0% { text-shadow: 0 0 10px #f5d300; } 50% { text-shadow: 0 0 30px #f5d300; } 100% { text-shadow: 0 0 10px #f5d300; } }
+    .hero-sub {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+    }
+
+
+        /*Animacao Videos INICIO*/
+    @keyframes pulseGlow { 0% { filter: drop-shadow(0 0 4px var(--accent)); } 50% { filter: drop-shadow(0 0 35px var(--accent)); } 100% { filter: drop-shadow(0 0 4px var(--accent)); } }
+    .video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(245,211,0,0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Efeito radioativo no hover */
+.video-wrapper:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 15px rgba(245,211,0,0.5),
+    0 0 30px rgba(245,211,0,0.4),
+    0 0 45px rgba(245,211,0,0.3);
+}
+
+/* Animação de pulso radioativo */
+.video-wrapper:hover {
+  animation: hazardPulse 1.8s infinite ease-in-out;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*ANIMACAO VIDEOS FIM*/
+
+/*Animacao DISCORD INICIO*/
+.discord-wrapper {
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(245,211,0,0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Efeito radioativo no hover */
+.discord-wrapper:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 0 15px rgba(245,211,0,0.5),
+    0 0 30px rgba(245,211,0,0.4),
+    0 0 45px rgba(245,211,0,0.3);
+  animation: hazardPulse 1.8s infinite ease-in-out;
+}
+
+/*ANIMACAO DISCORD FIM*/

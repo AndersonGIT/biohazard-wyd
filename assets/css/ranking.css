@@ -1,0 +1,49 @@
+
+/*RANKING GUILD INICIO*/
+.ranking-table {
+  text-align: center;
+}
+
+.ranking-table th,
+.ranking-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.rank-1 {
+  background: rgba(68, 85, 243, 0.25);
+  color: #a4f808;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(4, 243, 56, 0.6);
+  border-left: 6px solid #f6ff00;
+}
+
+.rank-2 {
+  background: rgba(246, 255, 0, 0.15);
+  color: #f1f163;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(239, 245, 70, 0.6);
+  border-left: 4px solid #e0e05a;
+}
+
+.rank-3 {
+  background: rgba(246, 255, 0, 0.10);
+  color: #cece6e;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(239, 245, 70, 0.6);
+  border-left: 2px solid #c9c94d;
+}
+
+.rank-1 td:first-child::before {
+  content: "🥇 ";
+}
+
+.rank-2 td:first-child::before {
+  content: "🥈 ";
+}
+
+.rank-3 td:first-child::before {
+  content: "🥉 ";
+}
+
+/*RANKING GUILD FIM*/

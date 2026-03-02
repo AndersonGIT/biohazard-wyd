@@ -1,0 +1,18 @@
+body.theme-classic {
+      --bg-main: #0b0b0d;
+      --bg-card: #151515;
+      --accent: #f5d300;
+      --accent-soft: #b38f00;
+      --text-main: #f5f5dc;
+      --text-muted: #c0b080;
+      
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+    }
+
+        .theme-toggle {
+      cursor: pointer;
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
