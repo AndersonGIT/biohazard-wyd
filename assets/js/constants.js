@@ -74,6 +74,10 @@
   const ptSetRD1 = '0';
   const ptSetRD0 = '0';
 
+  const dscSetCele = 'CELE';
+
+  const ptSetCele = '5';
+
   const ptSetArch = '3';
 
   const ptDontHaveSet = '1';

@@ -26,7 +26,6 @@
 
   async function loadLeadership() {
     try {
-      console.log('Carregando leadership.json...');
       let leadersLoaded = [];
       let leaders = [];
       let viceLeaders = [];
@@ -36,9 +35,6 @@
 
       leaders = leadersLoaded.filter(l => l.role.toLowerCase() === 'lider');
       viceLeaders = leadersLoaded.filter(l => l.role.toLowerCase() === 'vice-lider'); 
-
-      console.log('Líderes carregados:', leaders);
-      console.log('Vice-Líderes carregados:', viceLeaders);
 
   const leadersGrid = document.getElementById('leader-grid');
   leadersGrid.innerHTML = '';
