@@ -1,12 +1,10 @@
     async function renderRankingPowerRating(sortBy = 'power') {
-      console.log("Rendering Power Rating...");
       let rankingData = [];
       // const res = await fetch('assets/data/ranking-power-hating.json');
         const url = "https://raw.githubusercontent.com/AndersonGIT/bh-portal-data/main/data/ranking-power.json";
       const response = await fetch(url)
       rankingData = await response.json();
 
-      console.log("Ranking Data:", rankingData);
     const tbody = document.getElementById('ranking-power-hating-body');
     tbody.innerHTML = '';
 
